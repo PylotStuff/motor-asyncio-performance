@@ -1,0 +1,4 @@
+uvloop==0.4.12
+motor==3.4.0
+pymongo==4.7.2
+faker
