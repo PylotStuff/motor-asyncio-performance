@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 fake = Faker()
 
-MONGO_URI = 'mongodb://root:root@localhost:27019'
+MONGO_URI = 'mongodb://root:root@localhost:27020'
 DB_NAME = 'products'
 COLLECTION_NAME = 'gmc_products'
 
@@ -34,6 +34,10 @@ def generate_fake_product():
         'price': {
             'value': str(round(random.uniform(10.0, 1000.0), 2)),
             'currency': 'USD'
+        },
+        'slug': {
+            "US": "product-slug",
+            "SA": "product-slug"
         },
         'brand': fake.company(),
         'gtin': str(fake.random_int(min=100000000000, max=999999999999)),
@@ -59,10 +63,10 @@ async def generate_and_insert_batches(batch_size, total_batches, concurrency_lim
         await asyncio.gather(*tasks)
 
 async def main():
-    total_products = 300000
+    total_products = 1800000
     batch_size = 1000
     total_batches = total_products // batch_size
-    concurrency_limit = 6
+    concurrency_limit = 10
 
     start_time = time.time()
     await generate_and_insert_batches(batch_size, total_batches, concurrency_limit)
