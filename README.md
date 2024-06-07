@@ -19,12 +19,14 @@ pip3 install -r requirements.txt
 ```
 
 
-3. Populate product data to source collection
+3. Populate product data as a source collection
 ```
 python3 populate.py
 ```
 
-4. Run Migrations & Compare
+Now, you should have 1.8M document in the source collection. What's next?
+
+## Benchmark Write Operations
 
 ```
 python3 db-migrate-slow.py
@@ -33,4 +35,17 @@ python3 db-migrate-slow.py
 
 ```
 python3 db-migrate-fast.py
+```
+
+## Benchmark Read Operations (Existence Cheking)
+With field existence vs assing default value
+
+
+```
+python3 db-bad-document-structure.py
+```
+
+
+```
+python3 db-good-document-structure.py
 ```
