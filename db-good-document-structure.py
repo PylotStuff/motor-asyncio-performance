@@ -14,7 +14,7 @@ COLLECTION_NAME = 'gmc_products'
 client = AsyncIOMotorClient(MONGO_URI)
 db = client[DB_NAME]
 collection = db[COLLECTION_NAME]
-target_collection = db["new_collection"]
+target_collection = db["good_collection"]
 
 async def create_index():
     await target_collection.create_index(

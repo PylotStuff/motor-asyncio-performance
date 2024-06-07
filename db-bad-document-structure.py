@@ -14,7 +14,7 @@ COLLECTION_NAME = 'gmc_products'
 client = AsyncIOMotorClient(MONGO_URI)
 db = client[DB_NAME]
 collection = db[COLLECTION_NAME]
-target_collection = db["new_collection"]
+target_collection = db["bad_collection"]
 
 async def create_index():
     await target_collection.create_index(
@@ -68,15 +68,15 @@ async def measure_filter_execution_time():
     logger.info(f'Number of documents without "brand" field: {count}')
 
 async def main():
-    await create_index()
+    # await create_index()
     
-    batch_size = 1000
-    concurrency_limit = 10
+    # batch_size = 1000
+    # concurrency_limit = 10
 
-    start_time = time.time()
-    await process_batches(batch_size, concurrency_limit)
-    end_time = time.time()
-    logger.info(f'Total time to process batches: {end_time - start_time:.2f} seconds.')
+    # start_time = time.time()
+    # await process_batches(batch_size, concurrency_limit)
+    # end_time = time.time()
+    # logger.info(f'Total time to process batches: {end_time - start_time:.2f} seconds.')
 
     await measure_filter_execution_time()
 
